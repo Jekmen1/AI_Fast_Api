@@ -1,4 +1,4 @@
-from fastapi import status, FastAPI, Depends, HTTPException, Path, APIRouter
+from fastapi import status, Depends, HTTPException, APIRouter
 from pydantic import BaseModel, Field
 from database import SessionLocal
 from typing import Annotated
