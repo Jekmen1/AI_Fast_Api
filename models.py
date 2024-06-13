@@ -12,6 +12,8 @@ class Users(Base):
     last_name = Column(String)
     hashed_password = Column(String)
     role = Column(String)
+    is_verified = Column(Boolean, server_default='false', nullable=False)
+    verification_token = Column(String(255), unique=True, nullable=True)
 
     chat_histories = relationship('Chat_History', back_populates='user')
 

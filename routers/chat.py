@@ -48,7 +48,7 @@ async def get_user_chat_hisroty(user: user_dependency, db: Session = Depends(get
     chat_history_records = db.query(Chat_History).filter(Chat_History.user_id == user.id).all()
     chat_history = [
             {
-                "id": user.username,
+                "username": user.username,
                 "message": record.message,
                 "response": record.response,
                 "timestamp": record.timestamp
