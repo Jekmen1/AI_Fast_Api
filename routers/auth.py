@@ -34,7 +34,6 @@ class UserRequest(BaseModel):
     first_name: str
     last_name: str
     password: str
-    role: str
 
 class Token(BaseModel):
     access_token: str
@@ -68,7 +67,7 @@ def generate_verification_token():
 
 async def send_email(sender_email, receiver_email, subject, message_body):
     smtp_server = 'smtp.gmail.com'
-    port = 587  # For starttls
+    port = 587
     sender_password = os.getenv('EMAIL_PASSWORD')
 
     message = MIMEMultipart()
@@ -98,7 +97,7 @@ async def create_user(db: db_dependency, create_user_request: UserRequest):
         username=create_user_request.username,
         first_name=create_user_request.first_name,
         last_name=create_user_request.last_name,
-        role=create_user_request.role,
+        role='user',
         hashed_password=bcrypt_context.hash(create_user_request.password),
         verification_token=verification_token
     )

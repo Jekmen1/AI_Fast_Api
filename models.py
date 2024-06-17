@@ -1,5 +1,5 @@
 from database import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text, DateTime,  CheckConstraint
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
@@ -16,6 +16,9 @@ class Users(Base):
     verification_token = Column(String(255), unique=True, nullable=True)
 
     chat_histories = relationship('Chat_History', back_populates='user')
+    __table_args__ = (
+        CheckConstraint("role = 'user'", name='check_role_user'),
+    )
 
 
 class Chat_History(Base):

@@ -81,8 +81,8 @@ async def send_message(user: user_dependency, msg: Message, db: Session = Depend
 
     return {"user": user.username, "response": response.text}
 
-@router.delete('/delete_chat_history/{chat_id}', status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user_chat_history(user: user_dependency, db: Session = Depends(get_db), chat_id: int = Path(gt=0)):
+@router.delete('/delete_chat_history/', status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user_chat_history(user: user_dependency, db: Session = Depends(get_db)):
     user = db.query(Users).filter(Users.id == user.get('id')).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
