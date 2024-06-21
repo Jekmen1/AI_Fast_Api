@@ -1,4 +1,12 @@
+GenAi_Api
 
+Technologies Used:
+FastApi
+OAuth2
+GenAi
+PostgreSQL
+JWT Authentication
+External Email Service
 
 ###  Installation
 
